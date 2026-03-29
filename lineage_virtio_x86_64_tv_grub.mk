@@ -8,11 +8,18 @@ ifeq ($(ANDROID_USE_WIDEVINE),true)
 $(call inherit-product-if-exists, vendor/google/proprietary/widevine-prebuilt/widevine.mk)
 endif
 
-ANDROID_USE_INTEL_HOUDINI := true
-ifeq ($(ANDROID_USE_INTEL_HOUDINI),true)
-$(call inherit-product-if-exists, vendor/intel/proprietary/houdini/houdini.mk)
-$(call inherit-product-if-exists, vendor/intel/proprietary/houdini/native_bridge_arm_on_x86.mk)
-endif
+# libhoudini / native bridge
+WITH_NATIVE_BRIDGE := true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.dalvik.vm.isa.arm=x86 \
+    ro.enable.native.bridge.exec=1 \
+    ro.dalvik.vm.isa.arm64=x86_64 \
+    ro.enable.native.bridge.exec64=1 \
+    ro.dalvik.vm.native.bridge=libhoudini.so
+
+PRODUCT_PACKAGES += \
+    houdini
 
 # WayDroid-ATV GApps for Android TV x86_64
 GMS_VARIANT := full
