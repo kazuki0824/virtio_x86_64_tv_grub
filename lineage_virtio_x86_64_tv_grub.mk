@@ -20,7 +20,8 @@ $(call inherit-product-if-exists, vendor/google/proprietary/widevine-prebuilt/wi
 WITH_NATIVE_BRIDGE := true
 
 PRODUCT_PACKAGES += \
-    houdini
+    houdini \
+    boringssl_self_test_vendor
 
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.dalvik.vm.isa.arm=x86 \
