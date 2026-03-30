@@ -11,31 +11,19 @@ endif
 # libhoudini / native bridge
 WITH_NATIVE_BRIDGE := true
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.dalvik.vm.isa.arm=x86 \
+    ro.enable.native.bridge.exec=1 \
+    ro.dalvik.vm.isa.arm64=x86_64 \
+    ro.enable.native.bridge.exec64=1 \
+    ro.dalvik.vm.native.bridge=libhoudini.so
+
 PRODUCT_PACKAGES += \
     houdini
 
-PRODUCT_SYSTEM_PROPERTIES += \
-    ro.dalvik.vm.isa.arm=x86 \
-    ro.dalvik.vm.isa.arm64=x86_64 \
-    ro.dalvik.vm.native.bridge=libhoudini.so \
-    ro.enable.native.bridge.exec=1 \
-    ro.enable.native.bridge.exec64=1
-
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.enable.native.bridge.exec=1 \
-    ro.vendor.enable.native.bridge.exec64=1
-
-PRODUCT_SYSTEM_PROPERTIES += \
-    service.adb.tcp.port=5555 \
-    persist.adb.tcp.port=5555
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.adb.secure=0 \
-    persist.sys.usb.config=adb
-    
 # WayDroid-ATV GApps for Android TV x86_64
 GMS_VARIANT := full
-$(call inherit-product-if-exists, vendor/gapps_tv/x86_64/x86_64-vendor.mk)
+$(call inherit-product, vendor/gapps_tv/x86_64/x86_64-vendor.mk)
 
 PRODUCT_NAME := lineage_virtio_x86_64_tv_grub
 PRODUCT_DEVICE := virtio_x86_64_tv_grub
