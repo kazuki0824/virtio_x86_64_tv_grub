@@ -16,19 +16,18 @@ $(call inherit-product, device/virt/virtio_x86_64_tv/device.mk)
 # Widevine L3
 $(call inherit-product-if-exists, vendor/google/proprietary/widevine-prebuilt/widevine.mk)
 
-# libhoudini / native bridge
-WITH_NATIVE_BRIDGE := true
+# libndk_translation / native bridge
+$(call inherit-product-if-exists, vendor/google/proprietary/ndk_translation-prebuilt/libndk_translation.mk)
+$(call inherit-product-if-exists, vendor/google/proprietary/ndk_translation-prebuilt/native_bridge_arm_on_x86.mk)
 
 PRODUCT_PACKAGES += \
-    houdini \
     boringssl_self_test_vendor
 
 PRODUCT_SYSTEM_PROPERTIES += \
-    ro.dalvik.vm.isa.arm=x86 \
-    ro.enable.native.bridge.exec=1 \
-    ro.dalvik.vm.isa.arm64=x86_64 \
-    ro.enable.native.bridge.exec64=1 \
-    ro.dalvik.vm.native.bridge=libhoudini.so
+    ro.enable.native.bridge.exec=1
+
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.sys.nativebridge=1
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.enable.native.bridge.exec=1 \
