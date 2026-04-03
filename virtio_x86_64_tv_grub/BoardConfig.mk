@@ -1,5 +1,6 @@
-# SPDX-FileCopyrightText: The OpenAI Assistant
-# SPDX-License-Identifier: Apache-2.0
+# Generic virtio TV GRUB product.
+# This sibling intentionally keeps using upstream virtio_x86_64_tv / virtio_x86_64
+# board assets, including GRUB menus and kernel fragments.
 
 include device/virt/virtio_x86_64_tv/BoardConfig.mk
 
@@ -8,7 +9,7 @@ TARGET_BOOT_MANAGER := grub
 TARGET_GRUB_ARCH := x86_64-efi
 TARGET_GRUB_2ND_ARCH := i386-pc
 
-# Native bridge (libndk_translation): arm64 + arm32
+# Native bridge (libndk_translation): arm64 + arm32.
 TARGET_NATIVE_BRIDGE_ARCH := arm64
 TARGET_NATIVE_BRIDGE_ARCH_VARIANT := armv8-a
 TARGET_NATIVE_BRIDGE_CPU_VARIANT := generic
@@ -26,6 +27,4 @@ TARGET_2ND_ARCH_VARIANT := x86_64
 include vendor/google/proprietary/ndk_translation-prebuilt/board/native_bridge_arm_on_x86.mk
 
 TARGET_USES_64_BIT_BINDER := true
-
-
 BUILD_BROKEN_DUP_RULES := true

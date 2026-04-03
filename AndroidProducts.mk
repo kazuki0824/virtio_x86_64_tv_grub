@@ -1,5 +1,5 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_virtio_x86_64_tv_grub.mk
+    $(LOCAL_DIR)/virtio_x86_64_tv_grub/lineage_virtio_x86_64_tv_grub.mk \
 
 COMMON_LUNCH_CHOICES := \
-    lineage_virtio_x86_64_tv_grub-userdebug
+    lineage_virtio_x86_64_tv_grub-userdebug \
