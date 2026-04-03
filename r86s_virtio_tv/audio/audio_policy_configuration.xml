@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Product-side audio policy choice for the r86s sibling product.
+
+  What this file does:
+    - keeps the AOSP audio policy XML structure
+    - prefers an HDMI-class output as defaultOutputDevice
+
+  What this file does not prove:
+    - that a particular runtime audio HAL will expose matching module / port names
+    - that HDMI audio passthrough will succeed on every host / guest combination
+-->
+<audioPolicyConfiguration version="7.0">
+    <globalConfiguration speaker_drc_enabled="true"/>
+
+    <modules>
+        <module name="primary" halVersion="3.0">
+            <attachedDevices>
+                <item>Speaker</item>
+                <item>HDMI Out</item>
+            </attachedDevices>
+            <defaultOutputDevice>HDMI Out</defaultOutputDevice>
+
+            <mixPorts>
+                <mixPort name="primary output" role="source"
+                         flags="AUDIO_OUTPUT_FLAG_PRIMARY">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="44100 48000"
+                             channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </mixPort>
+            </mixPorts>
+
+            <devicePorts>
+                <devicePort tagName="Speaker" type="AUDIO_DEVICE_OUT_SPEAKER" role="sink">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="44100 48000"
+                             channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </devicePort>
+                <devicePort tagName="HDMI Out" type="AUDIO_DEVICE_OUT_AUX_DIGITAL" role="sink">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="44100 48000"
+                             channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </devicePort>
+            </devicePorts>
+
+            <routes>
+                <route type="mix" sink="Speaker" sources="primary output"/>
+                <route type="mix" sink="HDMI Out" sources="primary output"/>
+            </routes>
+        </module>
+    </modules>
+</audioPolicyConfiguration>
