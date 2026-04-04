@@ -31,5 +31,4 @@ TARGET_2ND_ARCH_VARIANT := x86_64
 
 include vendor/google/proprietary/ndk_translation-prebuilt/board/native_bridge_arm_on_x86.mk
 
-TARGET_USES_64_BIT_BINDER := true
 BUILD_BROKEN_DUP_RULES := true
