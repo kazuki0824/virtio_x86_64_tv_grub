@@ -32,3 +32,8 @@ TARGET_2ND_ARCH_VARIANT := x86_64
 include vendor/google/proprietary/ndk_translation-prebuilt/board/native_bridge_arm_on_x86.mk
 
 BUILD_BROKEN_DUP_RULES := true
+
+PX4_DRV_VENDOR_MODULES_ARCHIVE := \
+    $(OUT_DIR)/soong/.intermediates/device/maleicacid/virtio_x86_64_tv_grub/px4_drv/px4_drv_vendor_modules_archive/gen/px4_drv_vendor_modules.zip
+
+BOARD_VENDOR_KERNEL_MODULES_ARCHIVE := $(PX4_DRV_VENDOR_MODULES_ARCHIVE)

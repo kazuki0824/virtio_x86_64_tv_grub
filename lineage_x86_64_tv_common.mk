@@ -16,7 +16,12 @@ $(call inherit-product-if-exists, \
     vendor/google/proprietary/ndk_translation-prebuilt/native_bridge_arm_on_x86.mk)
 
 PRODUCT_PACKAGES += \
-    boringssl_self_test_vendor
+    boringssl_self_test_vendor \
+    px4_drv_vendor_modules_archive
+
+PRODUCT_COPY_FILES += \
+    external/px4_drv/etc/it930x-firmware.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/it930x-firmware.bin \
+    device/maleicacid/virtio_x86_64_tv_grub/px4_drv/init/init.px4_drv.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.px4_drv.rc
 
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.enable.native.bridge.exec=1

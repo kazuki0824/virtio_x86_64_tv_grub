@@ -1,0 +1,18 @@
+bazel_dep(name = "kleaf")
+
+local_path_override(
+    module_name = "kleaf",
+    path = "__KLEAF_DIR__",
+)
+
+kernel_prebuilt_ext = use_extension(
+    "@kleaf//build/kernel/kleaf:kernel_prebuilt_ext.bzl",
+    "kernel_prebuilt_ext",
+)
+
+kernel_prebuilt_ext.declare_kernel_prebuilts(
+    name = "gki_prebuilts",
+    local_artifact_path = "__PREBUILT_KERNEL_DIR__",
+)
+
+use_repo(kernel_prebuilt_ext, "gki_prebuilts")
