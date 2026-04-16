@@ -1,10 +1,9 @@
 genrule {
     name: "px4_drv_vendor_modules_archive",
     out: ["px4_drv_vendor_modules.zip"],
-    cmd: "bash $(location device/maleicacid/virtio_x86_64_tv_grub/px4_drv/build_px4_drv_modules.sh) " +
-        "$(genDir) $(out)",
     tool_files: [
-        "device/maleicacid/virtio_x86_64_tv_grub/px4_drv/build_px4_drv_modules.sh",
-        "device/maleicacid/virtio_x86_64_tv_grub/px4_drv/ddk/MODULE.bazel.template",
+        "build_px4_drv_modules.sh",
+        "ddk/MODULE.bazel.template",
     ],
+    cmd: "$(location build_px4_drv_modules.sh) $(genDir) $(out)",
 }
