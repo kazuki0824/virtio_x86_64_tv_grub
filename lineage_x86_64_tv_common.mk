@@ -17,11 +17,14 @@ $(call inherit-product-if-exists, \
 
 PRODUCT_PACKAGES += \
     boringssl_self_test_vendor \
-    px4_drv_vendor_modules_archive
+    maleicacid.tv.tuner_hal-service \
+    maleicacid_tuner_hal_vts_config_aidl_v2 \
+    maleicacid_tuner_hal_ueventd_rc
 
 PRODUCT_COPY_FILES += \
     external/px4_drv/etc/it930x-firmware.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/it930x-firmware.bin \
-    device/maleicacid/virtio_x86_64_tv_grub/px4_drv/init/init.px4_drv.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.px4_drv.rc
+    device/maleicacid/virtio_x86_64_tv_grub/px4_drv/init/init.px4_drv.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.px4_drv.rc \
+    device/maleicacid/virtio_x86_64_tv_grub/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
 
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.enable.native.bridge.exec=1

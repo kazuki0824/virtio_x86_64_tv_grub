@@ -1,0 +1,3 @@
+# Import the r47 Tuner HAL device-node permissions installed by
+# maleicacid_tuner_hal_ueventd_rc.
+import /vendor/etc/ueventd.tuner_hal.rc

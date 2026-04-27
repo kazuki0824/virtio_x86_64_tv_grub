@@ -7,7 +7,7 @@ if [ "$#" -ne 2 ]; then
 fi
 
 GEN_DIR="$1"
-OUT_ZIP="$2"
+OUT_ZIP="$(realpath -m "$2")"
 
 TOP="$(pwd)"
 WS="${GEN_DIR}/ddk_ws"
@@ -18,7 +18,8 @@ BAZEL="${TOP}/build/bazel/bin/bazel"
 TEMPLATE="${TOP}/device/maleicacid/virtio_x86_64_tv_grub/px4_drv/ddk/MODULE.bazel.template"
 
 rm -rf "${WS}" "${STAGING}"
-mkdir -p "${WS}/external" "${STAGING}/lib/modules"
+mkdir -p "${WS}/external" "${STAGING}"
+mkdir -p "$(dirname "${OUT_ZIP}")"
 
 ln -s "${TOP}/external/px4_drv" "${WS}/external/px4_drv"
 
@@ -34,8 +35,7 @@ sed \
   "${BAZEL}" build //external/px4_drv:px4_drv
 )
 
-cp -f "${WS}/bazel-bin/external/px4_drv/px4_drv.ko" "${STAGING}/lib/modules/px4_drv.ko"
-printf 'px4_drv.ko\n' > "${STAGING}/lib/modules/modules.load"
+cp -f "${WS}/bazel-bin/external/px4_drv/px4_drv.ko" "${STAGING}/px4_drv.ko"
 
 (
   cd "${STAGING}"
