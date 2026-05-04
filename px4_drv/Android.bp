@@ -1,9 +1,0 @@
-genrule {
-    name: "px4_drv_vendor_modules_archive",
-    out: ["px4_drv_vendor_modules.zip"],
-    tool_files: [
-        "build_px4_drv_modules.sh",
-        "ddk/MODULE.bazel.template",
-    ],
-    cmd: "$(location build_px4_drv_modules.sh) $(genDir) $(out)",
-}
