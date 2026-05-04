@@ -22,7 +22,7 @@ PRODUCT_PACKAGES += \
     maleicacid_tuner_hal_ueventd_rc
 
 PRODUCT_COPY_FILES += \
-    external/px4_drv/etc/it930x-firmware.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/it930x-firmware.bin \
+    device/maleicacid/virtio_x86_64_tv_grub/px4_drv/etc/it930x-firmware.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/it930x-firmware.bin \
     device/maleicacid/virtio_x86_64_tv_grub/px4_drv/init/init.px4_drv.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.px4_drv.rc \
     device/maleicacid/virtio_x86_64_tv_grub/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
 
