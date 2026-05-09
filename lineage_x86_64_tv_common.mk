@@ -19,7 +19,10 @@ PRODUCT_PACKAGES += \
     boringssl_self_test_vendor \
     maleicacid.tv.tuner_hal-service \
     maleicacid_tuner_hal_vts_config_aidl_v2 \
-    maleicacid_tuner_hal_ueventd_rc
+    maleicacid_tuner_hal_ueventd_rc \
+    MaleicacidTvInput \
+    privapp-permissions-maleicacid-tvinput \
+    libmaleicacid_arib_si_engine_jni
 
 PRODUCT_COPY_FILES += \
     device/maleicacid/virtio_x86_64_tv_grub/px4_drv/etc/it930x-firmware.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/it930x-firmware.bin \
