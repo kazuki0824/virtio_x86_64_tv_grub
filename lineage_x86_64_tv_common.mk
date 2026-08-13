@@ -41,4 +41,4 @@ PRODUCT_VENDOR_PROPERTIES += \
 
 # Optional Android TV GApps bundle for x86_64.
 GMS_VARIANT := full
-$(call inherit-product-if-exists, vendor/gapps_tv/x86_64/x86_64-vendor.mk)
+$(call inherit-product-if-exists, vendor/gapps_tv/arm64/arm64-vendor.mk)
