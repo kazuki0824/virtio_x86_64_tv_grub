@@ -28,10 +28,11 @@ include vendor/google/proprietary/ndk_translation-prebuilt/board/native_bridge_a
 
 BUILD_BROKEN_DUP_RULES := true
 
-PX4_DRV_VENDOR_MODULES_ARCHIVE := \
-    device/maleicacid/virtio_x86_64_tv_grub/px4_drv/prebuilt/px4_drv_vendor_modules.zip
-
-BOARD_VENDOR_KERNEL_MODULES_ARCHIVE := $(PX4_DRV_VENDOR_MODULES_ARCHIVE)
+# Build px4_drv as a Lineage external kbuild module against the exact kernel
+# source, configuration, output tree, and toolchain used by this product.
+TARGET_KERNEL_EXT_MODULE_ROOT := kernel/maleicacid
+TARGET_KERNEL_EXT_MODULES += \
+    px4_drv:kbuild
 
 BOARD_VENDOR_SEPOLICY_DIRS += \
     vendor/maleicacid/tv/tuner_hal/sepolicy
