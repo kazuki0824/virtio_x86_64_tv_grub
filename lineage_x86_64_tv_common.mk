@@ -5,6 +5,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, device/google/atv/products/atv_base.mk)
 $(call inherit-product, vendor/lineage/config/common_tv.mk)
+$(call inherit-product, vendor/maleicacid/tv/tuner_hal2/config/product_integration.mk)
 
 # Optional Widevine L3 prebuilts.
 $(call inherit-product-if-exists, vendor/google/proprietary/widevine-prebuilt/widevine.mk)
@@ -17,9 +18,6 @@ $(call inherit-product-if-exists, \
 
 PRODUCT_PACKAGES += \
     boringssl_self_test_vendor \
-    maleicacid.tv.tuner_hal-service \
-    maleicacid_tuner_hal_vts_config_aidl_v2 \
-    maleicacid_tuner_hal_ueventd_rc \
     MaleicacidTvInput \
     privapp-permissions-maleicacid-tvinput \
     libmaleicacid_arib_si_engine_jni
