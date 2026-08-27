@@ -1,5 +1,8 @@
 # Generic virtio Android TV product that keeps using upstream virtio TV board assets.
 
+PRODUCT_RELEASE_CONFIG_MAPS += \
+    device/maleicacid/virtio_x86_64_tv_grub/release/release_config_map.textproto
+
 $(call inherit-product, device/maleicacid/virtio_x86_64_tv_grub/lineage_x86_64_tv_common.mk)
 $(call inherit-product, device/virt/virtio_x86_64_tv/device.mk)
 
