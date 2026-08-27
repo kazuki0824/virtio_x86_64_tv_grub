@@ -35,5 +35,6 @@ TARGET_KERNEL_EXT_MODULES += \
     px4_drv:kbuild
 
 BOARD_VENDOR_SEPOLICY_DIRS += \
-    vendor/google/proprietary/widevine-prebuilt/sepolicy/gen/gen_common \
-    vendor/maleicacid/tv/tuner_hal/sepolicy
+    vendor/google/proprietary/widevine-prebuilt/sepolicy/gen/gen_common
+
+include vendor/maleicacid/tv/tuner_hal2/config/BoardConfigVendorSePolicy.mk
