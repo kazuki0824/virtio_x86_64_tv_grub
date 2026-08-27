@@ -1,0 +1,5 @@
+description: "Maleicacid Android TV device release configurations."
+default_containers: "product"
+default_containers: "system"
+default_containers: "system_ext"
+default_containers: "vendor"
