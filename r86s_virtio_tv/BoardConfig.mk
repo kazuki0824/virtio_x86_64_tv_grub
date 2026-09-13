@@ -38,5 +38,4 @@ PX4_DRV_VENDOR_MODULES_ARCHIVE := \
 
 BOARD_VENDOR_KERNEL_MODULES_ARCHIVE := $(PX4_DRV_VENDOR_MODULES_ARCHIVE)
 
-BOARD_VENDOR_SEPOLICY_DIRS += \
-    vendor/maleicacid/tv/tuner_hal/sepolicy
+include vendor/maleicacid/tv/config/BoardConfigVendorSePolicy.mk

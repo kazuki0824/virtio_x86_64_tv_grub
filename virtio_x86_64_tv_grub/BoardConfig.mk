@@ -37,4 +37,4 @@ TARGET_KERNEL_EXT_MODULES += \
 BOARD_VENDOR_SEPOLICY_DIRS += \
     vendor/google/proprietary/widevine-prebuilt/sepolicy/gen/gen_common
 
-include vendor/maleicacid/tv/tuner_hal2/config/BoardConfigVendorSePolicy.mk
+include vendor/maleicacid/tv/config/BoardConfigVendorSePolicy.mk
