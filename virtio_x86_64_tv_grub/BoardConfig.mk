@@ -34,6 +34,12 @@ TARGET_KERNEL_EXT_MODULE_ROOT := kernel/maleicacid
 TARGET_KERNEL_EXT_MODULES += \
     px4_drv:kbuild
 
+# Keep the Earthsoft PT1/PT2 support product-specific. LineageOS 22.1 resolves
+# TARGET_KERNEL_CONFIG fragments from arch/x86/configs, so this relative Kbuild
+# target points back to the fragment owned by this device repository.
+TARGET_KERNEL_CONFIG += \
+    ../../../../../../device/maleicacid/virtio_x86_64_tv_grub/virtio_x86_64_tv_grub/configs/kernel/earth_pt1.config
+
 BOARD_VENDOR_SEPOLICY_DIRS += \
     device/maleicacid/virtio_x86_64_tv_grub/virtio_x86_64_tv_grub/sepolicy/vendor \
     vendor/google/proprietary/widevine-prebuilt/sepolicy/gen/gen_common
