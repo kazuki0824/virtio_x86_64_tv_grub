@@ -35,6 +35,7 @@ TARGET_KERNEL_EXT_MODULES += \
     px4_drv:kbuild
 
 BOARD_VENDOR_SEPOLICY_DIRS += \
+    device/maleicacid/virtio_x86_64_tv_grub/virtio_x86_64_tv_grub/sepolicy/vendor \
     vendor/google/proprietary/widevine-prebuilt/sepolicy/gen/gen_common
 
 include vendor/maleicacid/tv/config/BoardConfigVendorSePolicy.mk
