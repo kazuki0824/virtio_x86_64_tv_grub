@@ -1,2 +1,3 @@
-on late-init
+on late-fs
+    write /sys/module/firmware_class/parameters/path /vendor/firmware/,/vendor/firmware_mnt/
     exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules px4_drv
