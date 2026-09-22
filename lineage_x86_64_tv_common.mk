@@ -26,16 +26,6 @@ PRODUCT_COPY_FILES += \
     device/maleicacid/virtio_x86_64_tv_grub/px4_drv/init/init.px4_drv.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.px4_drv.rc \
     device/maleicacid/virtio_x86_64_tv_grub/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
 
-PRODUCT_SYSTEM_PROPERTIES += \
-    ro.enable.native.bridge.exec=1
-
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    persist.sys.nativebridge=1
-
-PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.enable.native.bridge.exec=1 \
-    ro.vendor.enable.native.bridge.exec64=1
-
 # Optional Android TV GApps bundle for x86_64.
 GMS_VARIANT := full
 $(call inherit-product-if-exists, vendor/gapps_tv/arm64/arm64-vendor.mk)
