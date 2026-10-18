@@ -18,10 +18,5 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.graphics.gpu=i915
 
-# The optional local manifest includes the Celadon HDCP SDK source on R86S.
-# Stage only its standalone library; the hdcpd binary still depends on
-# Celadon's hwc.info endpoint, which the selected HWC3 does not provide.
-# Installing hdcpd without that backend would be a nonfunctional second path.
-ifneq ($(wildcard hardware/intel/external/media/hdcp/sdk/Android.bp),)
-PRODUCT_PACKAGES += libhdcpsdk
-endif
+# Celadon's libhdcpsdk only talks to hdcpd. Do not install an inert client
+# library while no compatible HDCP daemon/transport has been established.
