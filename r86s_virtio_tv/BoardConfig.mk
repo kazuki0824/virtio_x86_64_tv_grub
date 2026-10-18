@@ -38,4 +38,7 @@ PX4_DRV_VENDOR_MODULES_ARCHIVE := \
 
 BOARD_VENDOR_KERNEL_MODULES_ARCHIVE := $(PX4_DRV_VENDOR_MODULES_ARCHIVE)
 
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    device/maleicacid/virtio_x86_64_tv_grub/r86s_virtio_tv/sepolicy/vendor
+
 include vendor/maleicacid/tv/config/BoardConfigVendorSePolicy.mk

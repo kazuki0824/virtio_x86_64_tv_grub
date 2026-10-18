@@ -1,0 +1,11 @@
+# Widevine L3 AIDL DRM service on the R86S product.
+# This intentionally does not define hdcpd or permit communication to it.
+# The prebuilt exposes no DT_NEEDED or literal dependency on Celadon hdcpd.
+type hal_drm_widevine, domain;
+type hal_drm_widevine_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_drm_widevine)
+hal_server_domain(hal_drm_widevine, hal_drm)
+
+type mediadrm_vendor_data_file, file_type, data_file_type;
+allow hal_drm_widevine mediadrm_vendor_data_file:dir create_dir_perms;
+allow hal_drm_widevine mediadrm_vendor_data_file:file create_file_perms;
