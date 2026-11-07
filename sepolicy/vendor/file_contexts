@@ -1,0 +1,2 @@
+# The metadata disk has a GPT; vdc itself retains the upstream system label.
+/dev/block/vdc1    u:object_r:metadata_block_device:s0

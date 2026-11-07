@@ -47,3 +47,7 @@ BOARD_VENDOR_SEPOLICY_DIRS += \
     vendor/google/proprietary/widevine-prebuilt/sepolicy/gen/gen_common
 
 include vendor/maleicacid/tv/config/BoardConfigVendorSePolicy.mk
+
+# Shared persistent metadata disk for both GRUB products.
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    device/maleicacid/virtio_x86_64_tv_grub/sepolicy/vendor
