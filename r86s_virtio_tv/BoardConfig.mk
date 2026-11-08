@@ -39,3 +39,7 @@ PX4_DRV_VENDOR_MODULES_ARCHIVE := \
 BOARD_VENDOR_KERNEL_MODULES_ARCHIVE := $(PX4_DRV_VENDOR_MODULES_ARCHIVE)
 
 include vendor/maleicacid/tv/config/BoardConfigVendorSePolicy.mk
+
+# Shared persistent metadata disk for both GRUB products.
+BOARD_VENDOR_SEPOLICY_DIRS += \
+    device/maleicacid/virtio_x86_64_tv_grub/sepolicy/vendor
