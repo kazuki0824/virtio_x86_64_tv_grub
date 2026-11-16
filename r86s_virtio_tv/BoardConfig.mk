@@ -44,6 +44,15 @@ BOARD_VENDOR_KERNEL_MODULES_ARCHIVE := $(PX4_DRV_VENDOR_MODULES_ARCHIVE)
 TARGET_KERNEL_CONFIG += \
     ../../../../../../device/maleicacid/virtio_x86_64_tv_grub/r86s_virtio_tv/configs/kernel/hdcp.config
 
+# Source-built R86S kernel modules must also be listed in vendor_dlkm's
+# modules.load; simply declaring CONFIG_x=m would only build/package them.
+# MEI dependencies precede the Intel graphics driver.
+BOARD_VENDOR_KERNEL_MODULES_LOAD += \
+    mei.ko \
+    mei-me.ko \
+    mei_hdcp.ko \
+    i915.ko
+
 BOARD_VENDOR_SEPOLICY_DIRS += \
     device/maleicacid/virtio_x86_64_tv_grub/r86s_virtio_tv/sepolicy/vendor
 
