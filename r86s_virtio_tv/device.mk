@@ -18,5 +18,8 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.graphics.gpu=i915
 
-# Celadon's libhdcpsdk only talks to hdcpd. Do not install an inert client
-# library while no compatible HDCP daemon/transport has been established.
+# Widevine L3 is integrated independently of physical HDMI HDCP.
+# Celadon's SDK/daemon is not packaged in this source-only draft: its HWC2
+# libhwcservice bridge has not yet been adapted to the HWC3-owned DRM/KMS path.
+# This is NOT evidence that hdcpd/libhdcpsdk are inherently unnecessary.
+# Do not enable an HWC2 HAL, HWC2-to-HWC3 adapter, or second DRM-master HWC.
