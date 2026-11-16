@@ -38,6 +38,12 @@ PX4_DRV_VENDOR_MODULES_ARCHIVE := \
 
 BOARD_VENDOR_KERNEL_MODULES_ARCHIVE := $(PX4_DRV_VENDOR_MODULES_ARCHIVE)
 
+# R86S-only MEI-backed HDCP 2.x kernel support.
+# Same product-owned TARGET_KERNEL_CONFIG fragment approach as earth_pt1.config.
+# Effective only with source-built kernel/virt/virtio, not a prebuilt kernel.
+TARGET_KERNEL_CONFIG += \
+    ../../../../../../device/maleicacid/virtio_x86_64_tv_grub/r86s_virtio_tv/configs/kernel/hdcp.config
+
 BOARD_VENDOR_SEPOLICY_DIRS += \
     device/maleicacid/virtio_x86_64_tv_grub/r86s_virtio_tv/sepolicy/vendor
 
