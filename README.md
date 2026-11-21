@@ -14,24 +14,38 @@
 4. `breakfast virtio_x86_64_tv_grub`
 5. `m diskimage-vda`
 
-## 永続データの接続
+## 外部永続ディスクの起動契約
 
-両製品とも、`android_device_maleicacid_androidtv_tools/image/make_disk_image.sh`
-で生成した3台のディスクを接続する。
+両製品は Android 15 / LineageOS 22.1 の GRUB 起動に以下の4ディスクを
+使用する。QEMU/libvirt ではこの順序と VirtIO block の接続先を固定する。
 
-| ゲストデバイス | 用途 | 更新時の扱い |
+| ゲスト | 内容 | 初期化・更新 |
 | --- | --- | --- |
-| `vda` | 起動・システム | 新しいイメージに交換 |
-| `vdb` | userdata | 既存ディスクを継続使用 |
-| `vdc` | metadata用GPTディスク | userdataと対で継続使用 |
+| `vda` | EFI / super / misc / boot / vendor_boot / BIOS | 新ビルドに交換 |
+| `vdb` | パーティションなしの userdata | 初回作成、以降保持 |
+| `vdc` | GPT、`vdc1` が 32 MiB metadata | 初回作成、以降保持 |
+| `vdd` | ディスク全体が FAT32 の PERSIST (16 MiB) | 初回 `persist.img` から作成、以降保持 |
 
-`vdc1`のGPT名を`metadata`とし、起動ディスク内の旧metadata領域は
-`metadata-unused`に改名する。上流のfstabが参照する
-`/dev/block/by-name/metadata`は`vdc1`へ解決される。
-この製品で追加するSELinuxラベルは`vdc1`だけに適用する。
-`vdc`をGSI用ディスクとして接続する起動構成とは併用できない。
+`vda` 内の旧 `persist`・`metadata` パーティションは、デプロイ用
+イメージの生成時に `persist-unused`・`metadata-unused` に改名する。
+旧 `persist` パーティションの FAT32 `PERSIST` ラベルを残してはならない。
+この正規化と初期化用イメージの生成は
+`android_device_maleicacid_androidtv_tools` が担当する。
 
-既存環境を移行する際は、VMを停止してuserdataと対応するmetadataを
-同時に退避し、旧metadataの内容を新しい`vdc1`へ移す。
-空のmetadataを既存userdataと組み合わせて起動してはならない。
-ロールバック先にもこのディスク構成への対応が必要になる。
+`/dev/block/by-name/metadata` は `vdc1`、
+`/dev/block/by-name/persist` は `vdd` に解決させる。
+`vdb` 全体を userdata に使用する既存の bootconfig は維持する。
+
+R86S の GRUB メニューは共通の `boot_android` を使い、Android 15 の
+`vendor_boot` ramdisk fragments と bootconfig を読み込む。共通 GRUB
+設定や A/B 制御の実装を置き換えてはならない。
+
+既存 userdata と対応する metadata は同時に移行する。初期状態の
+metadata を既存 userdata と組み合わせて起動してはならない。
+デプロイ用システムディスクの交換時には、A/B 状態と
+Virtual A/B snapshot の整合を別途確認する。
+`vdc` はGSI用ディスクとして併用できない。
+
+この製品リポジトリ単体では、ホスト側のイメージ準備や外部
+永続ディスクの初回生成は行わない。依存する Android tools PR と
+VyOS PR を組み合わせ、全体の接続契約を満たす。

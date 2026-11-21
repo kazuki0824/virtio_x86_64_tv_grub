@@ -10,8 +10,9 @@ TARGET_BOOT_MANAGER := grub
 TARGET_GRUB_ARCH := x86_64-efi
 TARGET_GRUB_2ND_ARCH := i386-pc
 
-# Replace only the GRUB menu file for the r86s sibling product.
-TARGET_GRUB_BOOT_CONFIGS := \
+# Append the R86S menu after the common GRUB definitions (pre_boot_hook,
+# boot_android, A/B state handling, and vendor_boot fragments).
+TARGET_GRUB_BOOT_CONFIGS += \
     device/maleicacid/virtio_x86_64_tv_grub/r86s_virtio_tv/bootmgr/grub/grub-boot.cfg
 
 # Native bridge (libndk_translation): arm64 + arm32.
