@@ -10,11 +10,11 @@ TARGET_BOOT_MANAGER := grub
 TARGET_GRUB_ARCH := x86_64-efi
 TARGET_GRUB_2ND_ARCH := i386-pc
 
-# Keep the common GRUB functions, A/B boot control, and recovery menu,
-# but replace the generic x86_64-specific menu with the R86S menu.
-# Do not append to the inherited list: that would duplicate the generic submenu.
+# Keep upstream common boot functions and diagnostic menu, replacing only the
+# upstream x86_64 Intel submenu. R86S uses vdc for metadata, not GSI.
 TARGET_GRUB_BOOT_CONFIGS := \
     $(VIRT_COMMON_PATH)/bootmgr/grub/grub-boot.cfg \
+    device/maleicacid/virtio_x86_64_tv_grub/r86s_virtio_tv/bootmgr/grub/grub-virtio-common.cfg \
     device/maleicacid/virtio_x86_64_tv_grub/r86s_virtio_tv/bootmgr/grub/grub-boot.cfg
 
 # Native bridge (libndk_translation): arm64 + arm32.

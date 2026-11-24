@@ -14,4 +14,4 @@ PRODUCT_SOONG_NAMESPACES += \
     $(DEVICE_PRODUCT_PATH)
 
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.vendor.graphics.gpu=intel
+    ro.vendor.graphics.gpu=i915
