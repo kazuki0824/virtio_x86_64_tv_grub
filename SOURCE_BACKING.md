@@ -36,13 +36,13 @@ The default R86S Intel menu is selected on a fresh configuration, while
 recovery, bootloader and saved explicit menu settings remain authoritative.
 
 ## Intel graphics property
-`r86s_virtio_tv/device.mk` sets:
-
-`ro.vendor.graphics.gpu=i915`
-
-The GRUB Intel menu also passes `androidboot.gpu=i915`. These match the
-unmodified upstream LineageOS 22.1 `virtio_x86_64-graphics.rc` predicate.
-This corrects a pre-existing mismatch and does not prove GPU runtime behavior.
+The R86S Intel GRUB entries pass `androidboot.gpu=i915`. Upstream
+`init.virtio.rc` derives `ro.vendor.graphics.gpu` from `ro.boot.gpu`
+(defaulting to `virtio_gpu`), and `virtio_x86_64-graphics.rc` selects
+Intel initialization when that property is `i915`. The product must not
+pre-set this read-only property: doing so prevents other boot modes from
+selecting their GPU, including `vkms` for headless mode.
+This uses the upstream selection path and does not prove GPU runtime behavior.
 
 ## Audio policy file
 `r86s_virtio_tv/audio/audio_policy_configuration.xml` is a product-side audio
